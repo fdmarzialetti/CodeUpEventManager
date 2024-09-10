@@ -23,12 +23,30 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private Set<Comment> comments = new HashSet<>();
 
+    @OneToMany(mappedBy = "event")
+    private Set<EventLocation> eventLocations = new HashSet<>();
+
+
     public Event() {
     }
+
 
     public void addComment(Comment comment){
         comment.setEvent(this);
         this.comments.add(comment);
+    }
+
+    public void addEventLocation(EventLocation eventLocation) {
+        eventLocation.setEvent(this);
+        this.eventLocations.add(eventLocation);
+    }
+
+    public Set<EventLocation> getEventLocations() {
+        return eventLocations;
+    }
+
+    public void setEventLocations(Set<EventLocation> eventLocation) {
+        this.eventLocations = eventLocation;
     }
 
     public UUID getEvent_id() {
