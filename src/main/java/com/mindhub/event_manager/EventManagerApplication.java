@@ -15,20 +15,20 @@ public class EventManagerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(CustomerRepository customerRepository, EventRepository eventRepository, CommentRepository commentRepository, EventLocationRepository eventLocationRepository, LocationRepository locationRepository, CustomerEventRepository customerEventRepository){
+	public CommandLineRunner initData(CustomerRepository customerRepository, EventRepository eventRepository, CommentRepository commentRepository, EventLocationRepository eventLocationRepository, LocationRepository locationRepository, CustomerEventLocationRepository customerEventLocationRepository){
 		return args -> {
 			Customer customer1 = new Customer();
 			Event event1 = new Event();
 			Comment comment1 = new Comment();
 			Location location1 = new Location();
 			EventLocation eventLocation1 = new EventLocation();
-			CustomerEvent customerEvent1 = new CustomerEvent();
+			CustomerEventLocation customerEventLocation1 = new CustomerEventLocation();
 
-			customer1.addCustomerEvent(customerEvent1);
+			customer1.addCustomerEvent(customerEventLocation1);
 			customer1.addComment(comment1);
 			customer1.addEvent(event1);
 
-			eventLocation1.addCustomerEvent(customerEvent1);
+			eventLocation1.addCustomerEvent(customerEventLocation1);
 
 			event1.addEventLocation(eventLocation1);
 			event1.addComment(comment1);
@@ -43,7 +43,7 @@ public class EventManagerApplication {
 			locationRepository.save(location1);
 
 			eventLocationRepository.save(eventLocation1);
-			customerEventRepository.save(customerEvent1);
+			customerEventLocationRepository.save(customerEventLocation1);
 		};
 	}
 }

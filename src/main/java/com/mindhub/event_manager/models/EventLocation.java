@@ -21,7 +21,7 @@ public class EventLocation {
     private Location location;
 
     @OneToMany(mappedBy = "eventLocation")
-    private Set<CustomerEvent> customerEvents = new HashSet<>();
+    private Set<CustomerEventLocation> customerEventLocations = new HashSet<>();
 
     private LocalDateTime date;
     private int assistance;
@@ -29,17 +29,17 @@ public class EventLocation {
     public EventLocation() {
     }
 
-    public void addCustomerEvent(CustomerEvent customerEvent){
-        customerEvent.setEventLocation(this);
-        this.customerEvents.add(customerEvent);
+    public void addCustomerEvent(CustomerEventLocation customerEventLocation){
+        customerEventLocation.setEventLocation(this);
+        this.customerEventLocations.add(customerEventLocation);
     }
 
-    public Set<CustomerEvent> getCustomerEvents() {
-        return customerEvents;
+    public Set<CustomerEventLocation> getCustomerEvents() {
+        return customerEventLocations;
     }
 
-    public void setCustomerEvents(Set<CustomerEvent> customerEvents) {
-        this.customerEvents = customerEvents;
+    public void setCustomerEvents(Set<CustomerEventLocation> customerEventLocations) {
+        this.customerEventLocations = customerEventLocations;
     }
 
     public UUID getEventLocation_id() {

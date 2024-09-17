@@ -2,12 +2,10 @@ package com.mindhub.event_manager.models;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class CustomerEvent {
+public class CustomerEventLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID customerEvent_id;
@@ -20,7 +18,7 @@ public class CustomerEvent {
     @JoinColumn (name="eventLocation_id")
     private EventLocation eventLocation;
 
-    public CustomerEvent() {
+    public CustomerEventLocation() {
     }
 
     public EventLocation getEventLocation() {

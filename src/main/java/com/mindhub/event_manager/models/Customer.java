@@ -29,7 +29,7 @@ public class Customer {
     private Set<Comment> comments = new HashSet<>();
 
     @OneToMany(mappedBy = "customer")
-    private Set<CustomerEvent> customerEvents = new HashSet<>();
+    private Set<CustomerEventLocation> customerEventLocations = new HashSet<>();
 
     public Customer() {
     }
@@ -44,17 +44,17 @@ public class Customer {
         this.comments.add(comment);
     }
 
-    public void addCustomerEvent(CustomerEvent customerEvent){
-        customerEvent.setCustomer(this);
-        this.customerEvents.add(customerEvent);
+    public void addCustomerEvent(CustomerEventLocation customerEventLocation){
+        customerEventLocation.setCustomer(this);
+        this.customerEventLocations.add(customerEventLocation);
     }
 
-    public Set<CustomerEvent> getCustomerEvents() {
-        return customerEvents;
+    public Set<CustomerEventLocation> getCustomerEvents() {
+        return customerEventLocations;
     }
 
-    public void setCustomerEvents(Set<CustomerEvent> customerEvents) {
-        this.customerEvents = customerEvents;
+    public void setCustomerEvents(Set<CustomerEventLocation> customerEventLocations) {
+        this.customerEventLocations = customerEventLocations;
     }
 
     public UUID getCustomer_id() {
