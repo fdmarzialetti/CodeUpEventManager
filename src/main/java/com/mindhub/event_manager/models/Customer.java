@@ -36,7 +36,7 @@ public class Customer{
     @OneToMany(mappedBy = "customer")
     private Set<CustomerEventLocation> customerEventLocations = new HashSet<>();
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy = "customer")
     private Set<Reaction> reactions = new HashSet<>();
 
 

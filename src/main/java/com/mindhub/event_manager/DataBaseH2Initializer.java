@@ -48,7 +48,7 @@ public class DataBaseH2Initializer {
             eventLocationRepository.save(eventLocation1);
             customerEventLocationRepository.save(customerEventLocation1);
 
-			Reaction reaction1 = new Reaction(event1, customer1);
+			Reaction reaction1 = new Reaction();
             customer1.addReaction(reaction1);
             event1.addReaction(reaction1);
 			reactionRepository.save(reaction1);
