@@ -9,27 +9,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 public class Reaction{
-    /*
-    @EmbeddedId
-    private ReactionId reactionId;
-    public Reaction(Event event, Customer customer) {
-        this.event = event;
-        this.customer = customer;
-        this.reactionId = new ReactionId(event.getEventId(),customer.getCustomerId());
-    }
-    */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID reactionId;
 
-    private ReactionType reactionType;
+    @Id
+    @Setter(AccessLevel.NONE)
+    private String reactionId;
 
     @ManyToOne
-    @JoinColumn(name="event_id")
+    @JoinColumn(name = "event_id")
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    private ReactionType reactionType;
+
+    public Reaction(Event event, Customer customer){
+        this.event = event;
+        this.customer = customer;
+        reactionId = event.getEventId().toString()+"_"+customer.getCustomerId().toString();
+    }
 
 }
