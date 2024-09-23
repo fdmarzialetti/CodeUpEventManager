@@ -1,4 +1,5 @@
 package com.mindhub.event_manager.models;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,10 +14,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class ReactionId{
-
-    private Event event;
-    private Customer customer;
+public class ReactionId implements Serializable{
+    @Column(name = "event_id")
+    private UUID event;
+    @Column(name = "customer_id")
+    private UUID customer;
 
     @Override
     public boolean equals(Object o) {

@@ -10,16 +10,15 @@ import java.util.UUID;
 @Entity
 public class Reaction{
 
-    @Id
-    @Setter(AccessLevel.NONE)
-    private String reactionId;
+    @EmbeddedId
+    private ReactionId reactionId;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name= "event_id",insertable = false, updatable = false)
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id",insertable = false, updatable = false)
     private Customer customer;
 
     private ReactionType reactionType;
@@ -27,7 +26,7 @@ public class Reaction{
     public Reaction(Event event, Customer customer){
         this.event = event;
         this.customer = customer;
-        reactionId = event.getEventId().toString()+"_"+customer.getCustomerId().toString();
+        reactionId = new ReactionId(event.getEventId(),customer.getCustomerId());
     }
 
 }
