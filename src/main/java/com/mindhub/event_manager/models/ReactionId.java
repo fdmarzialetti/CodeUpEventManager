@@ -17,8 +17,8 @@ import java.util.UUID;
 public class ReactionId implements Serializable{
     @Column(name = "event_id")
     private UUID event;
-    @Column(name = "customer_id")
-    private UUID customer;
+    @Column(name = "user_id")
+    private UUID user;
 
     @Override
     public boolean equals(Object o) {
@@ -28,13 +28,13 @@ public class ReactionId implements Serializable{
         ReactionId that = (ReactionId) o;
 
         if (!event.equals(that.event)) return false;
-        return customer.equals(that.customer);
+        return user.equals(that.user);
     }
 
     @Override
     public int hashCode() {
         int result = event.hashCode();
-        result = 31 * result + customer.hashCode();
+        result = 31 * result + user.hashCode();
         return result;
     }
 }

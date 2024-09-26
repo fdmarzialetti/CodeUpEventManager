@@ -14,7 +14,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
-    private UUID locationId;
+    private UUID id;
     private String name;
     private int capacity;
     private String img;

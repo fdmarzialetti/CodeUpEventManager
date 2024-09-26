@@ -15,7 +15,7 @@ public class EventLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
-    private UUID eventLocationId;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name="event_id")

@@ -15,8 +15,8 @@ public class CustomerEventLocation {
     private UUID customerEventId;
 
     @ManyToOne
-    @JoinColumn(name="customer_id")
-    private Customer customer;
+    @JoinColumn(name="user_id")
+    private AppUser appUser;
 
     @ManyToOne
     @JoinColumn (name="eventLocation_id")

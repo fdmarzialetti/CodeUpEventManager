@@ -2,7 +2,6 @@ package com.mindhub.event_manager.models;
 import com.mindhub.event_manager.enums.ReactionType;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,22 +10,22 @@ import java.util.UUID;
 public class Reaction{
 
     @EmbeddedId
-    private ReactionId reactionId;
+    private ReactionId id;
 
     @ManyToOne
     @JoinColumn(name= "event_id",insertable = false, updatable = false)
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id",insertable = false, updatable = false)
-    private Customer customer;
+    @JoinColumn(name = "user_id",insertable = false, updatable = false)
+    private AppUser appUser;
 
     private ReactionType reactionType;
 
-    public Reaction(Event event, Customer customer){
+    public Reaction(Event event, AppUser appUser){
         this.event = event;
-        this.customer = customer;
-        reactionId = new ReactionId(event.getEventId(),customer.getCustomerId());
+        this.appUser = appUser;
+        id = new ReactionId(event.getId(), appUser.getId());
     }
 
 }

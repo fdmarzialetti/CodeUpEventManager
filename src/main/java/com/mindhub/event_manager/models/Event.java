@@ -3,7 +3,6 @@ package com.mindhub.event_manager.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,7 +14,7 @@ public class Event{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
-    private UUID eventId;
+    private UUID id;
     private String name;
     private byte age_req;
     private String desc;
@@ -23,7 +22,7 @@ public class Event{
 
     @ManyToOne
     @JoinColumn(name ="organizer_id")
-    private Customer customer;
+    private Organizer organizer;
 
     @OneToMany(mappedBy = "event")
     private Set<Comment> comments = new HashSet<>();
