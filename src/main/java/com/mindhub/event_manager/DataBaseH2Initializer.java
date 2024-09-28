@@ -13,7 +13,7 @@ public class DataBaseH2Initializer {
             AppUserRepository appUserRepository,
             OrganizerRepository organizerRepository,
             CommentRepository commentRepository,
-            CustomerEventLocationRepository customerEventLocationRepository,
+            AppUserEventLocationRepository appUserEventLocationRepository,
             EventRepository eventRepository,
             EventLocationRepository eventLocationRepository,
             LocationRepository locationRepository,
@@ -27,16 +27,16 @@ public class DataBaseH2Initializer {
             Comment comment2 = new Comment();
             Location location1 = new Location();
             EventLocation eventLocation1 = new EventLocation();
-            CustomerEventLocation customerEventLocation1 = new CustomerEventLocation();
+            AppUserEventLocation appUserEventLocation1 = new AppUserEventLocation();
 
             // Establish relationships
-            appUser1.addCustomerEvent(customerEventLocation1);
+            appUser1.addCustomerEvent(appUserEventLocation1);
             appUser1.addComment(comment1);
             appUser1.addComment(comment2);
 
             organizer1.addEvent(event1);
 
-            eventLocation1.addCustomerEvent(customerEventLocation1);
+            eventLocation1.addCustomerEvent(appUserEventLocation1);
             event1.addEventLocation(eventLocation1);
             event1.addComment(comment1);
             event1.addComment(comment2);
@@ -48,7 +48,7 @@ public class DataBaseH2Initializer {
             eventRepository.save(event1);
             locationRepository.save(location1);
             eventLocationRepository.save(eventLocation1);
-            customerEventLocationRepository.save(customerEventLocation1);
+            appUserEventLocationRepository.save(appUserEventLocation1);
 
             commentRepository.save(comment1); // Save comments after AppUser
             commentRepository.save(comment2);

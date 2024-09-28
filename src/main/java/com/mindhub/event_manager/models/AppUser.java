@@ -2,13 +2,11 @@ package com.mindhub.event_manager.models;
 
 import com.mindhub.event_manager.enums.CustomerGender;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -23,7 +21,7 @@ public class AppUser extends Customer{
     private Set<Comment> comments = new HashSet<>();
 
     @OneToMany(mappedBy = "appUser")
-    private Set<CustomerEventLocation> customerEventLocations = new HashSet<>();
+    private Set<AppUserEventLocation> appUserEventLocations = new HashSet<>();
 
     @OneToMany(mappedBy = "appUser")
     private Set<Reaction> reactions = new HashSet<>();
@@ -39,8 +37,8 @@ public class AppUser extends Customer{
         this.comments.add(comment);
     }
 
-    public void addCustomerEvent(CustomerEventLocation customerEventLocation){
-        customerEventLocation.setAppUser(this);
-        this.customerEventLocations.add(customerEventLocation);
+    public void addCustomerEvent(AppUserEventLocation appUserEventLocation){
+        appUserEventLocation.setAppUser(this);
+        this.appUserEventLocations.add(appUserEventLocation);
     }
 }

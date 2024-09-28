@@ -1,2 +1,20 @@
-package com.mindhub.event_manager.dtos.location;public class LocationSummaryDTO {
+package com.mindhub.event_manager.dtos.location;
+import com.mindhub.event_manager.models.Location;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+public class LocationSummaryDTO {
+
+    private String name;
+    private int capacity;
+    private String img;
+
+    public LocationSummaryDTO(Location location){
+        this.name = location.getName();
+        this.capacity = location.getCapacity();
+        this.img = location.getImg();
+    }
+
 }

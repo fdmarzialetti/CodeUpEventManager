@@ -25,14 +25,14 @@ public class EventLocation {
     private Location location;
 
     @OneToMany(mappedBy = "eventLocation")
-    private Set<CustomerEventLocation> customerEventLocations = new HashSet<>();
+    private Set<AppUserEventLocation> appUserEventLocations = new HashSet<>();
 
     private LocalDateTime date;
     private int assistance;
 
-    public void addCustomerEvent(CustomerEventLocation customerEventLocation){
-        customerEventLocation.setEventLocation(this);
-        this.customerEventLocations.add(customerEventLocation);
+    public void addCustomerEvent(AppUserEventLocation appUserEventLocation){
+        appUserEventLocation.setEventLocation(this);
+        this.appUserEventLocations.add(appUserEventLocation);
     }
 
 }

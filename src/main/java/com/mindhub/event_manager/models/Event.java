@@ -1,11 +1,11 @@
 package com.mindhub.event_manager.models;
-
+import com.mindhub.event_manager.dtos.event.EventCreateDTO;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,6 +32,16 @@ public class Event{
 
     @OneToMany(mappedBy = "event")
     private Set<Reaction> reactions = new HashSet<>();
+
+    //Constructors
+
+    public Event(EventCreateDTO eventCreateDTO, Organizer organizer){
+        this.name = eventCreateDTO.getName();
+        this.age_req = eventCreateDTO.getAge_req();
+        this.desc = eventCreateDTO.getDesc();
+        this.img = eventCreateDTO.getImg();
+        this.organizer = organizer;
+    }
 
 
     public void addReaction(Reaction reaction){
