@@ -1,6 +1,5 @@
 package com.mindhub.event_manager.dtos.event;
 import com.mindhub.event_manager.dtos.comment.CommentSummaryDTO;
-import com.mindhub.event_manager.dtos.eventLocation.EventLocationSummaryDTO;
 import com.mindhub.event_manager.dtos.location.LocationSummaryDTO;
 import com.mindhub.event_manager.dtos.organizer.OrganizerSummaryDTO;
 import com.mindhub.event_manager.dtos.reaction.ReactionSummaryDTO;

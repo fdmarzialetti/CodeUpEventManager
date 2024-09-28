@@ -24,7 +24,7 @@ public class LocationController {
     }
 
     @GetMapping("/{locationId}")
-    public ResponseEntity<LocationDetailDTO> getEventById(@PathVariable UUID locationId){
+    public ResponseEntity<LocationDetailDTO> getLocationById(@PathVariable UUID locationId){
         return new ResponseEntity<>(locationRepository.findById(locationId).map(LocationDetailDTO::new).orElseThrow(()->new RuntimeException()),HttpStatus.OK);
     }
 

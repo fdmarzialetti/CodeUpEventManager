@@ -1,8 +1,6 @@
 package com.mindhub.event_manager.dtos.location;
 
 import com.mindhub.event_manager.dtos.event.EventSummaryDTO;
-import com.mindhub.event_manager.dtos.eventLocation.EventLocationSummaryDTO;
-import com.mindhub.event_manager.models.EventLocation;
 import com.mindhub.event_manager.models.Location;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
