@@ -32,6 +32,7 @@ public class EventController {
         return new ResponseEntity<>(eventRepository.findById(eventId).map(EventDetailDTO::new).orElseThrow(()->new RuntimeException()),HttpStatus.OK);
     }
 
+
     @PostMapping("/{organizerId}")
     public ResponseEntity<?> createEvent(@RequestBody EventCreateDTO eventCreateDTO, @PathVariable UUID organizerId){
         Organizer organizer = organizerRepository.findById(organizerId).get();

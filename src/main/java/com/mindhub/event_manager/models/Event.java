@@ -34,7 +34,6 @@ public class Event{
     private Set<Reaction> reactions = new HashSet<>();
 
     //Constructors
-
     public Event(EventCreateDTO eventCreateDTO, Organizer organizer){
         this.name = eventCreateDTO.getName();
         this.age_req = eventCreateDTO.getAge_req();
@@ -57,5 +56,6 @@ public class Event{
         eventLocation.setEvent(this);
         this.eventLocations.add(eventLocation);
     }
+
 
 }
