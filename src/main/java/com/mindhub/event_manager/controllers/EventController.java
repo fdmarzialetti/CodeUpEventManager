@@ -15,7 +15,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/event")
+@RequestMapping("/api/events")
 public class EventController {
     @Autowired
     private EventRepository eventRepository;
@@ -33,9 +33,9 @@ public class EventController {
     }
 
 
-    @PostMapping("/{organizerId}")
-    public ResponseEntity<?> createEvent(@RequestBody EventCreateDTO eventCreateDTO, @PathVariable UUID organizerId){
-        Organizer organizer = organizerRepository.findById(organizerId).get();
+    @PostMapping
+    public ResponseEntity<?> createEvent(@RequestBody EventCreateDTO eventCreateDTO){
+        Organizer organizer = organizerRepository.findById(eventCreateDTO.getOrganizerId()).get();
         if(organizer.equals(null)){
             return new ResponseEntity<>("Organizer not found",HttpStatus.BAD_REQUEST);
         }

@@ -1,7 +1,10 @@
 package com.mindhub.event_manager.models;
 
+import com.mindhub.event_manager.dtos.appUser.AppUserCreateDTO;
 import com.mindhub.event_manager.enums.CustomerGender;
+import com.mindhub.event_manager.enums.CustomerRol;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +29,17 @@ public class AppUser extends Customer{
     @OneToMany(mappedBy = "appUser")
     private Set<Reaction> reactions = new HashSet<>();
 
+    public AppUser(AppUserCreateDTO appUserCreateDTO){
+        super(appUserCreateDTO.getName(), appUserCreateDTO.getLastname(), appUserCreateDTO.getEmail(), appUserCreateDTO.getPassword(), appUserCreateDTO.getCustomerRol());
+        this.age = appUserCreateDTO.getAge();
+        this.gender = appUserCreateDTO.getGender();
+    }
+
+    public AppUser(String name, String lastname, String email, String password, CustomerRol rol, byte age, CustomerGender gender) {
+        super(name, lastname, email, password, rol);
+        this.age = age;
+        this.gender = gender;
+    }
 
     public void addReaction(Reaction reaction){
         reaction.setAppUser(this);

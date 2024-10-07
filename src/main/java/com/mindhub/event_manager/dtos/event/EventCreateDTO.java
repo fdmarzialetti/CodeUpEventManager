@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class EventCreateDTO {
 
+    private UUID organizerId;
     private String name;
     private byte age_req;
     private String desc;

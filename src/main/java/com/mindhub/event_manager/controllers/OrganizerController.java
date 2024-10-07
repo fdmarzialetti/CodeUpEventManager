@@ -1,26 +1,28 @@
 package com.mindhub.event_manager.controllers;
-
-import com.mindhub.event_manager.dtos.location.LocationDetailDTO;
+import com.mindhub.event_manager.dtos.appUser.AppUserCreateDTO;
+import com.mindhub.event_manager.dtos.appUser.AppUserDTO;
+import com.mindhub.event_manager.dtos.organizer.OrganizerCreateDTO;
 import com.mindhub.event_manager.dtos.organizer.OrganizerDetailDTO;
-import com.mindhub.event_manager.repositories.LocationRepository;
+import com.mindhub.event_manager.models.AppUser;
+import com.mindhub.event_manager.models.Organizer;
 import com.mindhub.event_manager.repositories.OrganizerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/organizer")
+@RequestMapping("/api/organizers")
 public class OrganizerController {
     @Autowired
     private OrganizerRepository organizerRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<OrganizerDetailDTO>> getOrganizers(){
@@ -30,5 +32,13 @@ public class OrganizerController {
     @GetMapping("/{organizerId}")
     public ResponseEntity<OrganizerDetailDTO> getOrganizerById(@PathVariable UUID organizerId){
         return new ResponseEntity<>(organizerRepository.findById(organizerId).map(OrganizerDetailDTO::new).orElseThrow(()->new RuntimeException()),HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<OrganizerDetailDTO> createOrganizer(@RequestBody OrganizerCreateDTO organizerCreateDTO) {
+        organizerCreateDTO.encodePassword(passwordEncoder);
+        Organizer organizer = new Organizer(organizerCreateDTO);
+        Organizer savedOrganizer = organizerRepository.save(organizer);
+        return new ResponseEntity<>(new OrganizerDetailDTO(organizer), HttpStatus.CREATED);
     }
 }

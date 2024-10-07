@@ -1,13 +1,20 @@
 package com.mindhub.event_manager;
 
+import com.mindhub.event_manager.enums.CustomerGender;
+import com.mindhub.event_manager.enums.CustomerRol;
 import com.mindhub.event_manager.models.*;
 import com.mindhub.event_manager.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class DataBaseH2Initializer {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Bean
     public CommandLineRunner initData(
             AppUserRepository appUserRepository,
@@ -20,8 +27,10 @@ public class DataBaseH2Initializer {
             ReactionRepository reactionRepository) {
         return args -> {
             // Initialize entities
-            AppUser appUser1 = new AppUser();
-            Organizer organizer1 = new Organizer();
+            passwordEncoder.encode("1234");
+            AppUser appUser1 = new AppUser("Luis","Gonzales","luis@gmail.com",passwordEncoder.encode("1234"), CustomerRol.USER, (byte) 20, CustomerGender.MALE);
+            Organizer organizer1 = new Organizer("Ignacio","Perez","organizer@gmail.com",passwordEncoder.encode("1234"),CustomerRol.MANAGER);
+            Organizer admin1 = new Organizer("Maria","Becerra","admin@gmail.com",passwordEncoder.encode("1234"),CustomerRol.ADMIN);
             Event event1 = new Event();
             Comment comment1 = new Comment();
             Comment comment2 = new Comment();
@@ -45,6 +54,7 @@ public class DataBaseH2Initializer {
             // Save related entities in the correct order
             organizerRepository.save(organizer1);
             appUserRepository.save(appUser1); // Save AppUser first
+            organizerRepository.save(admin1);
             eventRepository.save(event1);
             locationRepository.save(location1);
             eventLocationRepository.save(eventLocation1);

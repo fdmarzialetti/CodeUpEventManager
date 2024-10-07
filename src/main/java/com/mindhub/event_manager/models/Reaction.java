@@ -3,8 +3,7 @@ import com.mindhub.event_manager.enums.ReactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
 public class Reaction{

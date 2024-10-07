@@ -6,8 +6,7 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
 public class Location {

@@ -15,7 +15,6 @@ public class AppUserDTO {
     private byte age;
     private CustomerGender gender;
 
-
     public AppUserDTO(AppUser appUser){
         this.id=appUser.getId();
         this.email= appUser.getEmail();

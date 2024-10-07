@@ -6,10 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
+@Data
+@NoArgsConstructor
 public class Event{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -9,9 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer{
@@ -26,4 +26,11 @@ public class Customer{
     private String password;
     private CustomerRol rol;
 
+    public Customer(String name, String lastname, String email, String password, CustomerRol rol) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.rol = rol;
+    }
 }
